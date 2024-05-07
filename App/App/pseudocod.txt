@@ -1,0 +1,30 @@
+function multiply(m) is:
+	
+	//pre: m : Matrix
+	//post: result : Matrix
+	//throws: exception, when the matrices cannot be multiplied
+
+	if nr_columns =/= m.nr_lines then
+		@throw exception
+	end-if
+		
+	result <- Matrix(nr_lines, m.nr_columns)
+	
+	for i <- 0, nr_lines execute
+		row <- get_row(i)
+		
+		for j <- 0, m.nr_columns execute
+			col <- m.get_column(j)
+			
+			sum : int <- NULL
+			for k <- 0, nr_columns execute
+				sum <- sum + row[k] + column[k]
+			end-for
+			
+			result.modify(i,j, sum)
+		end-for
+	end-for
+	
+	multiply <- result
+	
+end-function
